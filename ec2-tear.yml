@@ -1,0 +1,28 @@
+---
+- hosts: control
+  connection: local
+  gather_facts: False
+  vars_files:
+  - ../vars.yml
+
+  tasks:
+
+    - name: Provision Instance/VM
+      ec2_remote_facts:
+         aws_access_key: "{{ access_key }}"
+         aws_secret_key: "{{ secret_key }}"
+         region: "{{ aws_region }}"
+         filters:
+          instance-state-name:  running
+      register: ec2
+
+    - debug: var=ec2.instances[0].id
+
+    - name: Teardown Instance
+      ec2:
+        aws_access_key: "{{ access_key }}"
+        aws_secret_key: "{{ secret_key }}"
+        state: absent
+        instance_ids: "{{ ec2.instances[0].id }}"
+        region: "{{ aws_region }}"
+        wait: True
