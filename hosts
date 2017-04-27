@@ -1,0 +1,5 @@
+[control]
+localhost ansible_connection=local
+
+[AWS]
+ec2-34-209-153-119.us-west-2.compute.amazonaws.com

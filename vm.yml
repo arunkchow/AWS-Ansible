@@ -1,0 +1,27 @@
+---
+- hosts: control
+  connection: local
+  gather_facts: False
+  vars_files:
+  - ../vars.yml
+
+  tasks:
+
+    - name: Provision Instance/VM
+      ec2:
+         aws_access_key: "{{ access_key }}"
+         aws_secret_key: "{{ secret_key }}"
+         region: "{{ aws_region }}"
+         key_name: "{{ key_pair }}"
+         instance_type: "{{ ec2_type }}"
+         image: "{{ ami_id }}"
+         instance_tags:
+           Name: "{{ ec2_tag }}"
+         exact_count: "{{ inst_count }}"
+         count_tag:
+           Name: "{{ cnt_tag }}"
+         wait: yes
+         vpc_subnet_id: "{{ subnet_id }}"
+         assign_public_ip: yes
+      register: ec2
+

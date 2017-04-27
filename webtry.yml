@@ -1,0 +1,46 @@
+---
+- hosts: AWS
+  gather_facts: yes
+  become: yes
+  remote_user: ec2-user
+  connection: ssh
+
+  tasks:
+
+    - name: Check Epel-Release
+      command: /usr/bin/rpm -qa | grep -i epel-release | wc -l
+      register: result
+
+    - name: Download Epel-Release
+      get_url: url=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm dest=/var/tmp/
+      when: result == 0
+
+    - name: Install Epel-Release
+      command: /usr/bin/rpm -ivh /var/tmp/epel-release-latest-7.noarch.rpm
+      when: result == 0
+    
+    - name: Install Firewall-Python
+      yum: name=python-firewall-0.4.3.2-8.1.el7_3.2.noarch state=present update_cache=yes
+
+    - name: Install Nginx
+      yum: name=nginx state=present update_cache=yes
+
+    - name: Copy Cooler
+      copy: src=./cooler/ dest=/usr/share/nginx/html/ owner=root group=root mode=0644
+      notify: nginx-reload
+
+    - name: Open HTTP
+      firewalld: service=http permanent=true state=enabled zone=public
+      notify: firewalld-reload
+
+    - name: Open HTTPS
+      firewalld: service=https permanent=true state=enabled zone=public
+      notify: firewalld-reload
+
+  handlers:
+    - name: nginx-reload
+      service: name=nginx state=restarted
+
+    - name: firewalld-reload
+      service: name=firewalld state=restarted
+    
