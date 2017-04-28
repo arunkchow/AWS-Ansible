@@ -1,3 +1,11 @@
+# Playbook to install Nginx and Deploy sample web app
+# Created by: Arun Ghanta
+# Date: 26/27th April 2017
+# Depenedencies vars.yml outside the directory where this playbook is sitting
+# Also ansible-assignment.pem file with 600 mode perms
+# Command to use this playbook:
+#	 ansible-playbook --private-key=../ansible-assignment.pem ec2-webapp.yml
+
 ---
 - hosts: AWS
   gather_facts: yes

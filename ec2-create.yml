@@ -1,4 +1,10 @@
+# Playbook to create an EC2 instance on AWS
+# Created by: Arun Ghanta
+# Date: 26/27th April 2017
+# Depenedencies vars.yml outside the directory where this playbook is sitting
+
 ---
+
 - hosts: control
   connection: local
   gather_facts: False

@@ -1,3 +1,9 @@
+# Playbook to get the Public DNS Name of EC2 and add it hosts file
+# Created by: Arun Ghanta
+# Date: 26/27th April 2017
+# Depenedencies vars.yml outside the directory where this playbook is sitting
+# Also using hosts.j2 jinja template
+
 ---
 - hosts: control
   connection: local
