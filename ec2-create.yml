@@ -6,7 +6,6 @@
   - ../vars.yml
 
   tasks:
-
     - name: Provision Instance/VM
       ec2:
          aws_access_key: "{{ access_key }}"

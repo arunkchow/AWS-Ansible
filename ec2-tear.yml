@@ -1,3 +1,8 @@
+# This play book can only terminate AWC EC2 instance
+# Created by Arun Ghanta on 26/27th April for Arctiq Ansible Assignment
+# The vars file has to be placed outside the directory in which this playbook resides
+# Created using the knowledge I have and as well as online resources
+
 ---
 - hosts: control
   connection: local

@@ -6,7 +6,6 @@
   - ../vars.yml
 
   tasks:
-
     - name: Provision Instance/VM
       ec2_remote_facts:
          aws_access_key: "{{ access_key }}"
@@ -17,3 +16,7 @@
       register: ec2
 
     - debug:  var=ec2.instances[0].public_dns_name
+
+    - template:
+        src: ./hosts.j2
+        dest: ./hosts
