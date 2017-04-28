@@ -1,5 +1,5 @@
 To Run Web Application Playbook please use the below command:
 
-ansible-playbook --private-key=../ansible-assignment.pem webapp.yml
+ansible-playbook --private-key=../ansible-assignment.pem ec2-webapp.yml
 
 In case you get an error, please change permissions on ansible-assignment.pem file to 600
