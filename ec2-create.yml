@@ -2,6 +2,8 @@
 # Created by: Arun Ghanta
 # Date: 26/27th April 2017
 # Depenedencies vars.yml outside the directory where this playbook is sitting
+# Please execute ec2-info.yml after completion of this
+# ec2-info.yml retrieves public dns name and adds it to hosts file for inventory purpose
 
 ---
 
