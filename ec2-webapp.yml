@@ -12,17 +12,31 @@
   become: yes
   remote_user: ec2-user
   connection: ssh
+  vars_files:
+  - ../vars.yml
 
   tasks:
 
-    - name: install the nginx rpm from a remote repo
+    - name: Install Nginx from Remote Repo
       yum:
-        name: http://nginx.org/packages/rhel/7/noarch/RPMS/nginx-release-rhel-7-0.el7.ngx.noarch.rpm
+        name: "{{ nginx_url }}"
         state: present
+      tags:
+         - Install_Nginx
+ 
+    - name: Enable and start Nginx Service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      tags:
+         - Start_Nginx_Service
 
-    - name: Copy Cooler
+    - name: Copy Cooler Webiste. Takes really really long time to copy
       copy: src=./cooler/ dest=/usr/share/nginx/html/ owner=root group=root mode=0644
       notify: nginx-reload
+      tags:
+         - Copy_Website
 
   handlers:
     - name: nginx-reload
