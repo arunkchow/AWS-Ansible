@@ -2,4 +2,4 @@
 localhost ansible_connection=local
 
 [AWS]
-ec2-34-210-9-175.us-west-2.compute.amazonaws.com
+ec2-54-190-194-123.us-west-2.compute.amazonaws.com

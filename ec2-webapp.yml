@@ -12,14 +12,12 @@
   become: yes
   remote_user: ec2-user
   connection: ssh
-  vars_files:
-  - ../vars.yml
 
   tasks:
 
     - name: install the nginx rpm from a remote repo
       yum:
-        name: "{{ nginx_url }}"
+        name: http://nginx.org/packages/rhel/7/noarch/RPMS/nginx-release-rhel-7-0.el7.ngx.noarch.rpm
         state: present
 
     - name: Copy Cooler
