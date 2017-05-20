@@ -1,0 +1,13 @@
+---
+
+access_key: 
+secret_key: 
+aws_region: us-west-2
+key_pair: ansible-assignment
+ec2_type: t2.micro
+ami_id: ami-6f68cf0f
+ec2_tag: ansible-assignment
+inst_count: 1
+cnt_tag: ansible-assignment
+subnet_id: subnet-c342d8a4
+nginx_url: http://nginx.org/packages/rhel/7/x86_64/RPMS/nginx-1.8.1-1.el7.ngx.x86_64.rpm
