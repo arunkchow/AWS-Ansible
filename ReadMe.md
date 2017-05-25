@@ -25,4 +25,4 @@ Teardown VM:
 - This is a simple straight forward playbook that just deletes exisiting EC2 VM
 - Use ec2-tear.yml playbook to do that
 
-echo "options rtl8723be ant_sel=2"  >  /etc/modprobe.d/rtl8723be.conf
+
